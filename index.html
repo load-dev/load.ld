@@ -52,19 +52,14 @@
   .dropdown-content {
     display: none;
     position: absolute;
+    left: 0; /* Adjusted to prevent going off-screen */
+    transform: translateX(-50%); /* Centers dropdown content under the 'Contact' */
     background-color: #333; /* Dark gray background */
     color: white; /* White text */
     min-width: 160px;
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 25%;
-  }
-
-  .dropdown-content a {
-    color: white;
-    padding: 12px 16px;
-    text-decoration: none;
-    display: block;
   }
 
   .dropdown:hover .dropdown-content {
@@ -101,14 +96,6 @@
   }
 
   .neon-button:hover {
-    border: none;
-    padding: 10px 20px;
-    color: #fff;
-    background-color: #111;
-    cursor: pointer;
-    border-radius: 5px;
-    position: relative;
-    transition: all 0.3s ease;
     animation: rainbow 3s infinite linear;
   }
 
@@ -124,13 +111,22 @@
   }
 
   @media (max-width: 768px) {
-    .dropdown:hover .dropdown-content,
-    .dropdown-content {
-      display: none; /* Prevents hover effect on mobile */
+    .navbar {
+      flex-direction: column;
+      padding: 10px;
     }
-    .dropdown-content {
-      top: 15px;
+
+    .navbar .logo-title, .navbar .links {
+      justify-content: center;
+      width: 100%;
+      text-align: center;
     }
+
+    .dropdown-content {
+      transform: translateX(-10%); /* Adjust for mobile, slight shift to the left */
+      top: 20px; /* Lowered a bit for visibility */
+    }
+
     .dropdown:active .dropdown-content {
       display: block; /* Allows click to show dropdown on mobile */
     }
