@@ -1,2 +1,138 @@
 <!DOCTYPE html>
-hi
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LOAD.ld</title>
+<style>
+  body, html {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100%;
+    font-family: Arial, sans-serif;
+  }
+
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(to right, black, darkblue);
+    padding: 10px 50px;
+  }
+
+  .navbar img {
+    border-radius: 50%;
+    width: 50px;
+    height: 50px;
+  }
+
+  .navbar .title {
+    color: white;
+    margin-left: 10px;
+  }
+
+  .navbar .links a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px;
+  }
+
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+
+  .dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    z-index: 1;
+  }
+
+  .dropdown-content a {
+    color: black;
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+  }
+
+  .dropdown:hover .dropdown-content {display: block;}
+
+  .landing-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: calc(100vh - 60px);
+    background-color: black;
+    color: white;
+    text-align: center;
+  }
+
+  .landing-page img {
+    width: 100px;
+    height: 100px;
+  }
+
+  .neon-button {
+    border: none;
+    padding: 10px 20px;
+    color: #fff;
+    background-color: #111;
+    cursor: pointer;
+    border-radius: 5px;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .neon-button:hover {
+    box-shadow: 0 0 5px #33e3ff, 
+                0 0 25px #33e3ff, 
+                0 0 50px #33e3ff, 
+                0 0 100px #33e3ff;
+  }
+
+  @media (max-width: 768px) {
+    .navbar {
+      flex-direction: column;
+    }
+
+    .navbar .links {
+      margin-top: 10px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="navbar">
+  <div class="logo-title">
+    <img src="logo.png" alt="Logo">
+    <span class="title">LOAD.ld</span>
+  </div>
+  <div class="links">
+    <a href="/docs">Docs</a>
+    <a href="https://github.com/load-dev/load.ld">Github Repo</a>
+    <div class="dropdown">
+      <span>Contact</span>
+      <div class="dropdown-content">
+        <a href="/c/discord">Discord</a>
+        <a href="/c/twitter">Twitter</a>
+        <a href="https://github.com/load-dev">Github</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="landing-page">
+  <img src="logo.png" alt="Logo">
+  <h1>LOAD.ld</h1>
+  <p>Brand new language for programmers!</p>
+  <button class="neon-button" onclick="location.href='/docs';">Explore Docs</button>
+</div>
+
+</body>
+</html>
