@@ -1,2 +1,2 @@
-# ❗ WARNING ❗
-## This branch is website files. Please turn back to [main](https://github.com/load-dev/load.ld/tree/main) branch to see sourcecode of load.ld
+# :wave: Welcome!
+## Im glad for you to be here. This repo is not finished thats why you see this message. Please wait for owner of this repo to finish this, then visit this again.
