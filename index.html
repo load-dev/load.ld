@@ -27,27 +27,26 @@
     height: 50px;
   }
 
+  .navbar .logo-title {
+    display: flex;
+    align-items: center; /* Ensures vertical centering of the logo and title */
+  }
+
   .navbar .title {
     color: white;
     margin-left: 10px;
-    display: flex;
-    align-items: center; /* Vertically center title */
   }
 
-  .navbar .links a {
+  .navbar .links a, .navbar .dropdown span {
     color: white;
     text-decoration: none;
-    margin: 0 15px; /* Increased spacing between links */
+    padding: 8px 15px; /* Adjusted spacing */
+    cursor: pointer;
   }
 
   .dropdown {
     position: relative;
     display: inline-block;
-  }
-
-  .dropdown span {
-    color: white;
-    cursor: pointer;
   }
 
   .dropdown-content {
@@ -59,6 +58,7 @@
     box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
     z-index: 1;
     border-radius: 25%;
+    right: 200px
   }
 
   .dropdown-content a {
@@ -66,6 +66,10 @@
     padding: 12px 16px;
     text-decoration: none;
     display: block;
+  }
+
+  .dropdown:hover .dropdown-content {
+    display: block; /* Shows dropdown on hover for desktop */
   }
 
   .landing-page {
@@ -82,7 +86,7 @@
   .landing-page img {
     width: 100px;
     height: 100px;
-    border-radius: 50%
+    border-radius: 50%;
   }
 
   .neon-button {
@@ -94,38 +98,30 @@
     border-radius: 5px;
     position: relative;
     transition: all 0.3s ease;
+    animation: rainbow 3s infinite linear;
   }
 
-  .neon-button:hover {
-    box-shadow: 0 0 3px #0ff, 
-                0 0 10px #0ff; /* Smaller, chroma-colored glow */
+  @keyframes rainbow {
+    0% { box-shadow: 0 0 5px #ff0000; }
+    14% { box-shadow: 0 0 5px #ff7f00; }
+    28% { box-shadow: 0 0 5px #ffff00; }
+    42% { box-shadow: 0 0 5px #00ff00; }
+    57% { box-shadow: 0 0 5px #0000ff; }
+    71% { box-shadow: 0 0 5px #4b0082; }
+    85% { box-shadow: 0 0 5px #9400d3; }
+    100% { box-shadow: 0 0 5px #ff0000; }
   }
 
   @media (max-width: 768px) {
-    .navbar {
-      flex-direction: column;
+    .dropdown:hover .dropdown-content,
+    .dropdown-content {
+      display: none; /* Prevents hover effect on mobile */
     }
-
-    .navbar .links {
-      margin-top: 10px;
+    .dropdown:active .dropdown-content {
+      display: block; /* Allows click to show dropdown on mobile */
     }
   }
 </style>
-<script>
-  document.addEventListener('DOMContentLoaded', function() {
-    var dropdown = document.querySelector('.dropdown');
-    var dropdownContent = document.querySelector('.dropdown-content');
-
-    dropdown.onclick = function(event) {
-      dropdownContent.style.display = dropdownContent.style.display === 'block' ? 'none' : 'block';
-      event.stopPropagation();
-    };
-
-    document.body.onclick = function() {
-      dropdownContent.style.display = 'none';
-    };
-  });
-</script>
 </head>
 <body>
 
@@ -154,6 +150,29 @@
   <p>Brand new language for programmers!</p>
   <button class="neon-button" onclick="location.href='/docs';">Explore Docs</button>
 </div>
+
+<script>
+  // Toggle dropdown on mobile on click
+  document.addEventListener('DOMContentLoaded', function() {
+    var isMobile = window.matchMedia("only screen and (max-width: 768px)").matches;
+
+    if (isMobile) {
+      document.querySelector('.dropdown').addEventListener('click', function(event) {
+        var dropdownContent = this.querySelector('.dropdown-content');
+        var isVisible = dropdownContent.style.display === 'block';
+        dropdownContent.style.display = isVisible ? 'none' : 'block';
+        event.stopPropagation();
+      });
+
+      document.body.addEventListener('click', function(e) {
+        var dropdownContent = document.querySelector('.dropdown-content');
+        if (e.target.closest('.dropdown') === null) {
+          dropdownContent.style.display = 'none';
+        }
+      });
+    }
+  });
+</script>
 
 </body>
 </html>
